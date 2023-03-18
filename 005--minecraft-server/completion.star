@@ -10,6 +10,10 @@ def run(plan, args):
             image = "itzg/minecraft-server",
             ports = {
                 "server": PortSpec(number = 25565),
-            }
+            },
+            env_vars = {
+                "EULA": "TRUE",
+            },
+            files = files,
         )
     )
