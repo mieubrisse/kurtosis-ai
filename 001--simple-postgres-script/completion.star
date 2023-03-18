@@ -1,11 +1,14 @@
 def run(plan, args):
+    start_postgres(plan)
+
+def start_postgres(plan):
     # Start the Postgres server
     plan.add_service(
         service_name = "postgres",
         config = ServiceConfig(
             image = "postgres",
             ports = {
-                "postgres": PortSpec(number = 5432),
+                "postgres": PortSpec(number = 5432, application_protocol = "postgresql"),
             },
             env_vars = {
                 "POSTGRES_USER": "some_user",

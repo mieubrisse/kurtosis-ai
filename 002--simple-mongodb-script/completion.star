@@ -1,4 +1,7 @@
 def run(plan, args):
+    start_mongo(plan)
+
+def start_mongo(plan):
     # Start the MongoDB server
     plan.add_service(
         service_name = "mongodb",

@@ -4,6 +4,11 @@ PASSWORD = "some_password"
 MONGO_PORT_ID = "mongodb"
 
 def run(plan, args):
+    mongo = start_mongo(plan)
+    start_mongo_express(plan, mongo)
+
+
+def start_mongo(plan):
     # Start the MongoDB server
     mongo = plan.add_service(
         service_name = "mongo",
@@ -18,9 +23,10 @@ def run(plan, args):
             }
         )
     )
+    return mongo
 
-    # TODO Wait for Mongo to become available
 
+def start_mongo_express(plan, mongo):
     # Start the Mongo Express server
     mongo_url = "mongodb://{}:{}@{}:{}/".format(
         USERNAME,
@@ -42,5 +48,3 @@ def run(plan, args):
             }
         )
     )
-
-    # TODO Wait for Mongo Express to become available
