@@ -1,1 +1,1 @@
-a script to start a Postgres server with PostgREST on top
+start a Postgres server with PostgREST on top

@@ -1,1 +1,1 @@
-a script to start a postgres server
+start a postgres server

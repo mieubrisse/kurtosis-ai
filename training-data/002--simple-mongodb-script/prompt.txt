@@ -1,1 +1,1 @@
-a script to start a MongoDB server
+start a MongoDB server

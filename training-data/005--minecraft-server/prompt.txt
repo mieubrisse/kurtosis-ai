@@ -1,1 +1,1 @@
-a script for running a Minecraft server
+run a Minecraft server

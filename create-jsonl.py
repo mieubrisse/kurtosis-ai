@@ -9,6 +9,8 @@ COMPLETION_FILENAME = "completion.star"
 PROMPT_SEPARATOR = "\n\n###\n\n"
 COMPLETION_STOP_SEQUENCE = "\n### END"
 
+PROMPT_PREFIX = "A Kurtosis Starlark script to "
+
 with open("output.jsonl", 'w') as output_fp:
     for pair_dirname in os.listdir(TRAINING_DATA_DIRNAME):
         prompt_filepath = os.path.join(TRAINING_DATA_DIRNAME, pair_dirname, PROMPT_FILENAME)
@@ -24,12 +26,9 @@ with open("output.jsonl", 'w') as output_fp:
                 raise("Prompt '" + completion_filepath + "' contains completion stop sequence")
 
         output_obj = {
-            "prompt": prompt_contents + PROMPT_SEPARATOR,
+            "prompt": PROMPT_PREFIX + prompt_contents + PROMPT_SEPARATOR,
             # To comply with the suggestion that each completion start with a whitespace per https://platform.openai.com/docs/guides/fine-tuning/data-formatting
             "completion": "\n" + completion_contents + COMPLETION_STOP_SEQUENCE,
         }
 
         output_fp.write(json.dumps(output_obj) + "\n")
-
-
-
